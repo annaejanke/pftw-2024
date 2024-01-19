@@ -1,3 +1,3 @@
-const name = window.prompt("What is your name?");
+const name_from_input = window.prompt("What is your name?");
 console.log("Hello World");
-console.log("Hello, " + name)
+console.log(name_from_input);
