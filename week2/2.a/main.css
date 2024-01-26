@@ -1,0 +1,10 @@
+body {
+    background-color: rgb(201, 137, 125);
+}
+
+h1 {
+    color:rgb(0, 0, 0);
+    font-size: 42px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
