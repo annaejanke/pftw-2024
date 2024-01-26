@@ -1,15 +1,15 @@
-// variable but has multiple slots
-// let grid = undefined;
-// let stroke1 = prompt("What is your favorite movie?", "Harry Potter");
+const movies = ["Harry Potter", "Something Borrowed", "Guardians of the Galaxy", "Thor", "The Devil Wears Prada" ];
 
-// Open Terminal == Control + ` (button left of the 1)
+// Prompt the user for input
+const user_movie_input = window.prompt("What is your favorite movie?");
 
-const movie = ["Harry Potter", "Something Borrowed", "Guardians of the Galaxy", "Thor", "The Devil Wears Prada" ];
-const user_movie = window.prompt("What is your favorite movie?");
+// Push user input to movie array
+movies.push(user_movie);
 
-movie.push(user_movie);
+//Create output string for both outputs
+let output_string = "Favorite Movie's" + movies.toString();
 
-console.log("Favorite Moveis: " + movie.toString());
-
-alert("Favorite Movies: " + movie.toString());
+//Outputs
+console.log(output_string);
+alert(output_string);
 
