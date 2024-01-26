@@ -7,7 +7,7 @@ const userMovieInput = window.prompt('What is your favorite movie?');
 movies.push(' ' + userMovieInput);
 
 // Create output string for both outputs
-const outputString = "Favorite Movie's: " + movies.toString();
+const outputString = "Favorite Movie's:" + movies.toString();
 
 // Outputs
 console.log(outputString);
