@@ -1,7 +1,7 @@
 import Camelid from "./components/camelid.jsx"
 
 function App() {
-  const llama = {src: "./llama.jpg", trivia: "The current population of llamas and alpacas in South America is estimated to be more than 7 million."}
+  const llama = {src: "./llama.jpg", trivia: "A group of llamas is called a herd."}
   const alpaca = {src: "./alpaca.jpg", trivia: "Alpacas come in 22 colours, from a deep blue-black through browns and tans to white"}
 
   return (
