@@ -13,6 +13,7 @@ body {
 
 input {
   margin: 0.4rem;
+  font-weight: 900;
 }
 
 legend {
@@ -26,5 +27,6 @@ fieldset {
   border-radius: 2px;
   padding: 12px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin: 20px;
+  font-size: 21px;
 }
