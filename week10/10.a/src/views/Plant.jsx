@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export function Plant({data}) {
     const {slug} = useParams();
