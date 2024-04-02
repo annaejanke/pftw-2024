@@ -54,6 +54,10 @@ const defaultPlants = [
 function App () {
   const [plants, setPlants] = useState(defaultPlants);
 
+  function addPlant(plant) {
+    setPlants([...plants, plant])
+  }
+
   function onDuplicate (plant) {
     setPlants([...plants, plant]);
   }
@@ -101,6 +105,9 @@ function App () {
       </table>
 
       <h2>Fill out the form below to add additional plants.</h2>
+      <PlantForm
+      addPlant={addPlant}
+       />
     </>
   )
 }

@@ -1,17 +1,31 @@
+import { useState } from "react"
+
 import PropTypes from 'prop-types';
+
 
 // CSS file
 import "./PlantForm.css"
 
-function App() {
-    const [data, setData] = useState({
-      firstName: "",
-      lastName: "",
-      streetAddress: "",
-      state: "",
-      country: "",
-      colors: [],
-    })
+const defaultPlantData = {
+  name: "",
+  image: "",
+  description: "",
+  light: "",
+  water: "",
+};
+
+const defaultErrorData = {
+  name: "",
+  image: "",
+  description: "",
+  light: "",
+  water: "",
+};
+
+function PlantForm({addPlant}) {
+
+    const [data, setData] = useState(defaultPlantData);
+    const [errors, setErrors] = useState(defaultErrorData);
   
     function handleTextChange(evt) {
       setData((previousData) =>{
@@ -22,226 +36,205 @@ function App() {
         }
       })
     }
-  
-    function handleColorChange(evt) {
-      let newColors;
-  
-      if (data.colors.includes(evt.target.id)) {
-        newColors = data.colors.filter((color) => color !== evt.target.id)
-      } else {
-        newColors = [...data.colors, evt.target.id]
-      }
-  
-      setData((previousData) => {
-        return {
-          ...previousData,
-          colors: newColors,
-        }
-      })
-  
-    }
-  
+
     function handleSubmit(evt) {
       evt.preventDefault();
-      validateAll();
-      console.log(data);
-    }
-  
-    const [errors, setErrors] = useState({
-      firstName: "",
-      lastName: "",
-    })
-  
-    function isAlphanumeric(str) {
-      return /^[a-zA-Z0-9]+$/.test(str);
-    }
-  
-    function validateFirstName() {
-      if(data.firstName.length === 0) {
-        setErrors((previousErrors) => {
-          return {
-            ...previousErrors,
-            firstName: "first name is required",
-          }
-        })
-      } else if (!isAlphanumeric(data.firstName)) {
-        setErrors((previousErrors) => {
-          return {
-            ...previousErrors,
-            firstName: "first name must be alphanumeric",
-          }
-        })
-      
-      } else {
-          setErrors((previousErrors) => {
-            return {
-              ...previousErrors,
-              firstName: "",
-            }
-        })
-      }
-  
-  
-    }
-  
-    function validateLastName() {
-      if(data.lastName.length === 0) {
-        setErrors((previousErrors) => {
-          return {
-            ...previousErrors,
-            lastName: "last name is required",
-          }
-        })
-      } else if (!isAlphanumeric(data.lastName)) {
-        setErrors((previousErrors) => {
-          return {
-            ...previousErrors,
-            lastName: "last name must be alphanumeric",
-          }
-        })
-      } else {
-          setErrors((previousErrors) => {
-            return {
-              ...previousErrors,
-              lastName: "",
-            }
-        })
+
+      if (validateForm()) {
+        addPlant(data);
+        resetForm();
       }
     }
-  
-    function validateAll() {
-      validateFirstName();
-      validateLastName();
+
+    function resetForm() {
+      setData(defaultPlantData)
+      setErrors(defaultErrorData)
+    }
+
+    function validateForm() {
+
+      let valid = true;
+
+      // Name Validation
+      if (!data.name) {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            name: "name is required",
+          }
+        })
+
+        valid = false;
+
+      } else {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            name: "",
+          }
+        })
+      }
+
+      // Image Validation
+      if (!data.image) {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            image: "image is required",
+          }
+        })
+
+        valid = false;
+      } else {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            image: "",
+          }
+        })
+      }
+
+      // Description Validation
+      if (!data.description) {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            description: "description is required",
+          }
+        })
+
+        valid = false;
+      } else {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            description: "",
+          }
+        })
+      }
+
+      // Light Validation
+      if (!data.light) {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            light: "light is required",
+          }
+        })
+
+        valid = false;
+      } else {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            light: "",
+          }
+        })
+      }
+
+      // Water Validation
+      if (!data.water) {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            water: "water is required",
+          }
+        })
+
+        valid = false;
+      } else {
+        setErrors((previousErrors) => {
+          return {
+            ...previousErrors,
+            water: "",
+          }
+        })
+      }
+
+      return valid;
     }
   
     return (
       <>
-      <h1>Alpaca Fan Club Registration Form</h1>
       <form onSubmit={handleSubmit}>
   
-        <fieldset>
-          <legend>Personal Information</legend>
-  
+        <fieldset>  
           <div>
-            <label htmlFor="firstName">First Name: </label>
+            <label htmlFor="name">Plant Name: </label>
             <input 
               type="text" 
-              name="firstName" 
-              id="firstName" 
-              value={data.firstName} 
+              name="name" 
+              id="name" 
+              value={data.name}
               onChange={handleTextChange}
-              onBlur={validateFirstName}
+              onBlur={validateForm}
             />
-            {(errors.firstName !== "") && (<p className="error">{errors.firstName}</p>)}
+            {(errors.name !== "") && (<p className="error">{errors.name}</p>)}
           </div>
   
           <div>
-            <label htmlFor="lastName">Last Name: </label>
+            <label htmlFor="image">Image URL: </label>
             <input 
               type="text" 
-              name="lastName" 
-              id="lastName" 
-              value={data.lastName} 
+              name="image" 
+              id="image" 
+              value={data.image} 
               onChange={handleTextChange}
-              onBlur={validateLastName}
+              onBlur={validateForm}
             />
-            {(errors.lastName !== "") && (<p className="error">{errors.lastName}</p>)}
+            {(errors.image !== "") && (<p className="error">{errors.image}</p>)}
           </div>
   
           <div>
-            <label htmlFor="streetAddress">Street Address: </label>
+            <label htmlFor="description">Description: </label>
             <input 
               type="text" 
-              name="streetAddress" 
-              id="streetAddress" 
-              value={data.streetAddress} 
+              name="description" 
+              id="description" 
+              value={data.description} 
               onChange={handleTextChange}
+              onBlur={validateForm}
             />
+            {(errors.desciption !== "") && (<p className="error">{errors.description}</p>)}
           </div>
   
           <div>
-            <label htmlFor="state">State: </label>
+            <label htmlFor="light">Light: </label>
             <input 
               type="text" 
-              name="state" 
-              id="state" 
-              value={data.state}
+              name="light" 
+              id="light" 
+              value={data.light}
               onChange={handleTextChange}
+              onBlur={validateForm}
             />
+            {(errors.light !== "") && (<p className="error">{errors.light}</p>)}
           </div>
   
           <div>
-            <label htmlFor="country">Country: </label>
+            <label htmlFor="water">Water: </label>
             <input 
               type="text" 
-              name="country" 
-              id="country" 
-              value={data.country}
+              name="water" 
+              id="water" 
+              value={data.water}
               onChange={handleTextChange} 
+              onBlur={validateForm}
             />
+            {(errors.water !== "") && (<p className="error">{errors.water}</p>)}
           </div>
   
         </fieldset>
-  
-        <fieldset>
-          <legend>Alpaca Information</legend>
-          <p>Favorite Alpaca Colors:</p>
-  
-              <input 
-                type="checkbox" 
-                id="purple" 
-                name="favColor"
-                checked={data.colors.includes("purple")}
-                onChange={handleColorChange}
-              />
-              <label htmlFor="html">Purple</label>
-  
-              <input 
-                type="checkbox" 
-                id="pink" 
-                name="favColor"
-                checked={data.colors.includes("pink")}
-                onChange={handleColorChange}
-              />
-              <label htmlFor="css">Pink</label>
-  
-              <input 
-                type="checkbox" 
-                id="orange" 
-                name="favColor"
-                checked={data.colors.includes("orange")}
-                onChange={handleColorChange}
-              />
-              <label htmlFor="javascript">Orange</label>
-  
-              <input 
-                type="checkbox" 
-                id="yellow" 
-                name="favColor"
-                checked={data.colors.includes("yellow")}
-                onChange={handleColorChange}
-              />
-              <label htmlFor="javascript">Yellow</label>
-  
-        </fieldset>
-  
-        <button type="submit" name="subbutton" id="submit" value="Submit">Submit</button>
+
+        <button type="submit" name="subbutton" id="submit" value="Submit" disabled={errors.name || errors.description || errors.light || errors.water || errors.image}>Add Plant</button>
       
       </form>
-  
-      <div>
-        <p>First Name: {data.firstName}</p>
-        <p>Last Name: {data.lastName}</p>
-        <p>Street Address: {data.streetAddress}</p>
-        <p>State: {data.state}</p>
-        <p>Country: {data.country}</p>
-        <p>Colors:</p>
-        {data.colors.map((color) => (
-          <p key={color}>{color}</p>
-        ))}
-      </div>
       </>
     )
   }
+
+  PlantForm.propTypes = {
+    addPlant: PropTypes.func
+}
   
-  export default App
+  export default PlantForm
