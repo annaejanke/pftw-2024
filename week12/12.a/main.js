@@ -43,7 +43,7 @@ function draw() {
 }
 
 function mousePressed() {
-    osc.start();
+  osc.start();
   var key = floor(map(mouseX, 0, width, 0, notes.length));
   playNote(notes[key]);
 }
