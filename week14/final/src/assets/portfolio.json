@@ -1,0 +1,50 @@
+[
+    {
+      "title": "Outdoor Voices",
+      "image": "./portfoilo_5.jpg",
+      "slug": "portfolio_1"
+    },
+
+    {
+        "title": "Triple Crown BBQ",
+        "image": "./portfolio_6.jpg",
+        "slug": "portfolio_2"
+    },
+
+    {
+        "title": "Llinea Monk Fruit",
+        "image": "./portfolio_7.jpg",
+        "slug": "portfolio_3"
+    },
+
+    {
+        "title": "Handshake Alliance",
+        "image": "./portfolio_8.jpg",
+        "slug": "portfolio_4"
+    },
+
+    {
+        "title": "CMS - Bloomreach",
+        "image": "./portfolio_1.jpg",
+        "slug": "portfolio_5"
+    },
+
+    {
+        "title": "Design System - Component Library",
+        "image": "./portfolio_2.jpg",
+        "slug": "portfolio_6"
+    },
+
+    {
+        "title": "Prototyping",
+        "image": "./portfolio_3.jpg",
+        "slug": "portfolio_7"
+    },
+
+    {
+        "title": "Design System Site Guide",
+        "image": "./portfolio_4.jpg",
+        "slug": "portfolio_8"
+    }
+
+]
