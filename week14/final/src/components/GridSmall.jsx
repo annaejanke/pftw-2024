@@ -4,7 +4,7 @@ return (
 <div className="bg-white">
   <div aria-hidden="true" className="relative">
     <img
-      src="/services.jpg"
+      src="./services.jpg"
       alt=""
       className="h-96 w-full object-cover object-center"
     />
